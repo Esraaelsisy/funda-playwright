@@ -4,7 +4,7 @@ import { acceptCookies } from '../utilities/cookieHelper';
 export const test = base.extend<{}>({
   context: async ({ browser }, use) => {
     const context = await browser.newContext({
-      userAgent: process.env.USER_AGENT || 'Fallback User Agent', 
+      userAgent: process.env.USER_AGENT 
     });
     await use(context);
   },
