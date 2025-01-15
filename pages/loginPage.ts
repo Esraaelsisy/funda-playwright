@@ -1,23 +1,42 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator } from "@playwright/test";
 
 export class LoginPage {
   private page: Page;
-  private usernameInput: Locator;
-  private passwordInput: Locator;
-  private loginButton: Locator;
+
+  private locators = {
+    usernameInput: () => this.page.locator("#UserName"),
+    passwordInput: () => this.page.locator("#Password"),
+    loginButton: () => this.page.getByRole("button", { name: "Log in" }),
+    errorMessage: () =>
+      this.page.locator("p").filter({
+        hasText:
+          "Het e-mailadres en wachtwoord komen niet overeen met onze gegevens",
+      }),
+    resetPasswordLink: () =>
+      this.page
+        .locator('a[href="/wachtwoord/vergeten"]')
+        .filter({ hasText: "reset je wachtwoord" }),
+  };
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.locator('#UserName');
-    this.passwordInput = page.locator('#Password');
-    // Let me check if it's better to use type=submit?
-    this.loginButton = page.getByRole('button', { name: 'Log in' }); 
   }
 
-
   async login(username: string, password: string) {
-    await this.usernameInput.fill(username);
-    await this.passwordInput.fill(password);
-    await this.loginButton.click();
+    await this.locators.usernameInput().fill(username);
+    await this.locators.passwordInput().fill(password);
+    await this.locators.loginButton().click();
+  }
+
+  get errorMessageText() {
+    return this.locators.errorMessage();
+  }
+
+  get resetPasswordLink() {
+    return this.locators.errorMessage();
+  }
+
+  async clickResetPassword() {
+    await this.locators.resetPasswordLink().click();
   }
 }
