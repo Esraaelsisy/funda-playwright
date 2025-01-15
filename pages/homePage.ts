@@ -2,14 +2,27 @@ import { Page, Locator } from "@playwright/test";
 
 export class HomePage {
   private page: Page;
-  private loginButton: Locator;
+
+  private locators = {
+    loginButton: () => this.page.getByRole("button", { name: "Inloggen" }),
+    accountMenu: () =>
+      this.page.getByRole("button").filter({ hasText: "Account" }),
+    logoutButton: () =>
+      this.page.getByRole('link', { name: 'Uitloggen' })
+  };
 
   constructor(page: Page) {
     this.page = page;
-    this.loginButton = page.getByRole("button", { name: "Inloggen" });
+  }
+  async navigateToLoginPage() {
+    await this.locators.loginButton().click();
   }
 
-  async navigateToLoginPage() {
-    await this.loginButton.click();
+  async openAccountMenu() {
+    await this.locators.accountMenu().click();
+  }
+
+  get accountMenu() {
+    return this.locators.accountMenu;
   }
 }
