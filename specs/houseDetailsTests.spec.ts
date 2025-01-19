@@ -5,7 +5,7 @@ import testData from "../data/testData.json";
 import { LocalizationHelper } from "../utilities/localizationHelper";
 
 test.describe("House Details Page Tests", () => {
-  test("House details page loads successfully", async ({ page }) => {
+  test("@smokeTests House details page loads successfully", async ({ page }) => {
     const pm = new PageManager(page);
 
     //Action: Navigate to the house details page
@@ -55,7 +55,7 @@ test.describe("House Details Page Tests", () => {
   });
 
   authTest(
-    "Saving a house to favorites with logged in user",
+    "@smokeTests Saving a house to favorites with logged in user",
     async ({ page }) => {
       const pm = new PageManager(page);
       //Action: Navigate to the house details page

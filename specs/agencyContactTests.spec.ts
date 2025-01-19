@@ -4,7 +4,7 @@ import testData from "../data/testData.json";
 import { authTest } from "../fixtures/authTest";
 
 test.describe("Real Estate Agency Interaction Tests", () => {
-  test("Contact an Agency for a certain house without loggin in", async ({
+  test("@smokeTests Contact an Agency for a certain house without loggin in", async ({
     page,
   }) => {
     const pm = new PageManager(page);
@@ -56,7 +56,7 @@ test.describe("Real Estate Agency Interaction Tests", () => {
     });
   });
 
-  test("Request a Viewing for a certain house without loggin in", async ({
+  test("@smokeTests Request a Viewing for a certain house without loggin in", async ({
     page,
   }) => {
     const pm = new PageManager(page);

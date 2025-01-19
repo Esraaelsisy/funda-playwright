@@ -6,7 +6,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 test.describe("Login Tests", () => {
-  test("Login with valid credentials", async ({ page }) => {
+  test("@smokeTests Login with valid credentials", async ({ page }) => {
     const pm = new PageManager(page);
     const username = process.env.USERNAME || '';
     const password = process.env.PASSWORD || '';

@@ -3,7 +3,7 @@ import { PageManager } from "../pages/pageManager";
 import testData from "../data/testData.json";
 
 test.describe("Search Functionality Tests", () => {
-  test("Search with valid location returns results", async ({ page }) => {
+  test("@smokeTests Search with valid location returns results", async ({ page }) => {
     const pm = new PageManager(page);
 
     //Arrangement
@@ -30,7 +30,7 @@ test.describe("Search Functionality Tests", () => {
     });
   });
 
-  test("Search in Rent with valid location and certain price range returns results", async ({
+  test("@smokeTests Search in Rent with valid location and certain price range returns results", async ({
     page,
   }) => {
     const pm = new PageManager(page);
