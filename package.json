@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "This is a public repo for Funda Assignment using Playwright",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "smokeTests": "npx playwright test --grep @smokeTests",
+    "smokeTests:chromium": "npx playwright test --grep @smokeTests --project=chromium",
+    "smokeTests:firefox": "npx playwright test --grep @smokeTests --project=firefox",
+    "smokeTests:webkit": "npx playwright test --grep @smokeTests --project=webkit"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
