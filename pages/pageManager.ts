@@ -3,8 +3,7 @@ import { LoginPage } from "./loginPage";
 import { HomePage } from "./homePage";
 import { SearchPage } from "./searchPage";
 import { HouseDetailsPage } from "./houseDetailsPage";
-import { FavoritesPage } from "./favoritesPage";
-import { RealEstateAgencyPage } from "./realEstateAgencyPage";
+import { AgencyContactPage } from "./agencyContactPage";
 
 export class PageManager {
   page: Page;
@@ -12,8 +11,7 @@ export class PageManager {
   homePage: HomePage;
   searchPage: SearchPage;
   houseDetailsPage: HouseDetailsPage;
-  favoritesPage: FavoritesPage;
-  realEstateAgencyPage: RealEstateAgencyPage;
+  agencyContactPage: AgencyContactPage;
 
   constructor(page: Page) {
     this.page = page;
@@ -21,7 +19,6 @@ export class PageManager {
     this.homePage = new HomePage(page);
     this.searchPage = new SearchPage(page);
     this.houseDetailsPage = new HouseDetailsPage(page);
-    this.favoritesPage = new FavoritesPage(page);
-    this.realEstateAgencyPage = new RealEstateAgencyPage(page);
+    this.agencyContactPage = new AgencyContactPage(page);
   }
 }
