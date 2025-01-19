@@ -1,4 +1,5 @@
-import { Page, Locator } from "@playwright/test";
+import { Page } from "@playwright/test";
+import { LocalizationHelper } from "../utilities/localizationHelper";
 
 export class LoginPage {
   private page: Page;
@@ -7,15 +8,24 @@ export class LoginPage {
     usernameInput: () => this.page.locator("#UserName"),
     passwordInput: () => this.page.locator("#Password"),
     loginButton: () => this.page.getByRole("button", { name: "Log in" }),
-    errorMessage: () =>
-      this.page.locator("p").filter({
-        hasText:
-          "Het e-mailadres en wachtwoord komen niet overeen met onze gegevens",
-      }),
-    resetPasswordLink: () =>
-      this.page
+    errorMessage: () => {
+      const errorMessage = LocalizationHelper.getLocalizedText(
+        "messages",
+        "loginError"
+      );
+      return this.page.locator("p").filter({
+        hasText: errorMessage,
+      });
+    },
+    resetPasswordLink: () => {
+      const resetPassword = LocalizationHelper.getLocalizedText(
+        "messages",
+        "resetPassword"
+      );
+      return this.page
         .locator('a[href="/wachtwoord/vergeten"]')
-        .filter({ hasText: "reset je wachtwoord" }),
+        .filter({ hasText: resetPassword });
+    },
   };
 
   constructor(page: Page) {
@@ -24,8 +34,11 @@ export class LoginPage {
 
   async login(username: string, password: string) {
     await this.locators.usernameInput().fill(username);
+    console.log(`Entered username: "${username}" into the username field.`);
     await this.locators.passwordInput().fill(password);
+    console.log(`Entered password: "[PROTECTED]" into the password field.`);
     await this.locators.loginButton().click();
+    console.log("Clicked the login submit button.");
   }
 
   get errorMessageText() {
@@ -33,10 +46,11 @@ export class LoginPage {
   }
 
   get resetPasswordLink() {
-    return this.locators.errorMessage();
+    return this.locators.resetPasswordLink();
   }
 
   async clickResetPassword() {
     await this.locators.resetPasswordLink().click();
+    console.log("Reset Password link is clicked.");
   }
 }
