@@ -1,0 +1,32 @@
+{
+  "credentials": {
+    "invalid": {
+      "username": "esraa.elsisy+1@gmail.com",
+      "password": "Testp@ssword@299"
+    }
+  },
+  "locations": {
+    "validLocation": "Sloterdijk Nieuw-West",
+    "invalidLocation": "1068cc"
+  },
+  "house": {
+    "detailsUrl": "/detail/koop/amsterdam/appartement-oldengaarde-12/89239919/",
+    "address": "Oldengaarde 12",
+    "askingPrice": "€ 375.000 k.k.",
+    "postalCode": "1083 TJ Amsterdam",
+    "agencyName": "Makelaar in Amsterdam B.V. ",
+    "agencyContact": "Bel (+31)20-8455878",
+    "VVEcost": "€ 118,00 per maand"
+  },
+  "realEstateAgency": {
+    "agencyName": "Makelaar in Amsterdam B.V. ",
+    "agencyContact": "Bel (+31)20-8455878",
+    "contactDetails": {
+      "contactMessage": "Please ignore this request, it's for testing reasons",
+      "contactEmail": "harrypotter@example.com",
+      "contactFirstName": "Harry",
+      "contactLastName": "Potter",
+      "contactTelephone": "0627561878"
+    }
+  }
+}
