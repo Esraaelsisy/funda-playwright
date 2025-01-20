@@ -2,12 +2,7 @@ name: Playwright Smoke Tests (Chromium)
 
 on:
   push:
-    branches:
-      - main
-      - master
-  pull_request:
-    branches:
-      - main
+    branches: // - main
       - master
 
 jobs:
