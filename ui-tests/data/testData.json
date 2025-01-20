@@ -1,0 +1,31 @@
+{
+  "credentials": {
+    "invalid": {
+      "username": "esraa.elsisy+1@gmail.com",
+      "password": "Testp@ssword@299"
+    }
+  },
+  "locations": {
+    "validLocation": "Sloterdijk Nieuw-West",
+    "invalidLocation": "1068cc"
+  },
+  "house": {
+    "detailsUrl": "/detail/koop/nieuw-amsterdam/huis-daglicht-10/43853176/",
+    "address": "Daglicht 10",
+    "askingPrice": "€ 399.500 k.k.",
+    "postalCode": "7833 DH Nieuw-Amsterdam",
+    "agencyName": "BERT BEUKEMA",
+    "agencyContact": "Bel 0591-555585"
+  },
+  "realEstateAgency": {
+    "agencyName": "BERT BEUKEMA",
+    "agencyContact": "Bel 0591-555585",
+    "contactDetails": {
+      "contactMessage": "Please ignore this request, it's for testing reasons.",
+      "contactEmail": "harrypotter@example.com",
+      "contactFirstName": "Harry",
+      "contactLastName": "Potter",
+      "contactTelephone": "0627561878"
+    }
+  }
+}
