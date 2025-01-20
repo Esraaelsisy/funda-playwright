@@ -23,7 +23,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 
+          node-version: 18
 
       # Step 3: Build Docker Image
       - name: Build Docker Image
@@ -33,10 +33,10 @@ jobs:
       - name: Run Smoke Tests Chromium
         run: docker run --rm \
           -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
-          -e USER_AGENT=${{ secrets.USER_AGENT }} \
-          -e LANGUAGE=${{ secrets.LANGUAGE }} \
-          -e USERNAME=${{ secrets.USERNAME }} \
-          -e PASSWORD=${{ secrets.PASSWORD }} \
+          -e "USER_AGENT=${{ secrets.USER_AGENT }}" \
+          -e "LANGUAGE=${{ secrets.LANGUAGE }}" \
+          -e "USERNAME=${{ secrets.USERNAME }}" \
+          -e "PASSWORD=${{ secrets.PASSWORD }}" \
           funda-playwright-chromium
 
       # Step 5: Upload Test Report as an Artifact
