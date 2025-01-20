@@ -5,7 +5,7 @@ import testData from "../data/testData.json";
 import { LocalizationHelper } from "../utilities/localizationHelper";
 
 test.describe("House Details Page Tests", () => {
-  test("@smokeTests House details page loads successfully", async ({
+  test("@smokeTests House Info are shown correctly in House Details Page", async ({
     page,
   }) => {
     const pm = new PageManager(page);
@@ -16,6 +16,7 @@ test.describe("House Details Page Tests", () => {
         testData.house.detailsUrl
       );
     });
+
     //Assertions
     await test.step("Verify house address", async () => {
       await expect(
@@ -38,6 +39,84 @@ test.describe("House Details Page Tests", () => {
       console.log("House Asking Price is verified");
     });
 
+    //Assertions for detailed house info section
+
+    await test.step("Verify house asking price in details section", async () => {
+      await expect(
+        pm.houseDetailsPage.getdetailedHouseInfo(
+          LocalizationHelper.getLocalizedText("buttons", "askingPrice")
+        )
+      ).toHaveText(testData.house.details.askingPrice);
+      console.log("House Asking Price is verified in details section");
+    });
+
+    await test.step("Verify house asking price per M2 in details section", async () => {
+      await expect(
+        pm.houseDetailsPage.getdetailedHouseInfo(
+          LocalizationHelper.getLocalizedText("buttons", "askingPricePerM2")
+        )
+      ).toContainText(testData.house.details.askingPricePerM2);
+      console.log("House Asking Price per m2 is verified in details section");
+    });
+
+    await test.step("Verify house living area in details section", async () => {
+      await expect(
+        pm.houseDetailsPage.getdetailedHouseInfo(
+          LocalizationHelper.getLocalizedText("buttons", "livingArea")
+        )
+      ).toHaveText(testData.house.details.livingArea);
+      console.log("House Living Area is verified in details section");
+    });
+
+    await test.step("Verify house status in details section", async () => {
+      await expect(
+        pm.houseDetailsPage.getdetailedHouseInfo(
+          LocalizationHelper.getLocalizedText("buttons", "houseStatus")
+        )
+      ).toHaveText(testData.house.details.houseStatus);
+      console.log("House Status is verified in details section");
+    });
+
+    await test.step("Verify house type in details section", async () => {
+      await expect(
+        pm.houseDetailsPage.getdetailedHouseInfo(
+          LocalizationHelper.getLocalizedText("buttons", "houseType")
+        )
+      ).toContainText(testData.house.details.houseType);
+      console.log("House Type is verified in details section");
+    });
+
+    await test.step("Verify house number of rooms in details section", async () => {
+      await expect(
+        pm.houseDetailsPage.getdetailedHouseInfo(
+          LocalizationHelper.getLocalizedText("buttons", "numberOfRooms")
+        )
+      ).toHaveText(testData.house.details.numberOfRooms);
+      console.log("House Number of Rooms is verified in details section");
+    });
+
+    await test.step("Verify house instruction year in details section", async () => {
+      await expect(
+        pm.houseDetailsPage.getdetailedHouseInfo(
+          LocalizationHelper.getLocalizedText("buttons", "yearOfConstruction")
+        )
+      ).toHaveText(testData.house.details.yearOfConstruction);
+      console.log("House Instruction Year is verified in details section");
+    });
+  });
+
+  test("@smokeTests Agency Info are shown correctly in House Details Page", async ({
+    page,
+  }) => {
+    const pm = new PageManager(page);
+
+    //Action: Navigate to the house details page
+    await test.step("Navigate to the house details page", async () => {
+      await pm.houseDetailsPage.navigateToHouseDetails(
+        testData.house.detailsUrl
+      );
+    });
+    //Assertions
     await test.step("Verify agency name is visible", async () => {
       await expect(
         pm.houseDetailsPage.getAgencyName(testData.house.agencyName)
