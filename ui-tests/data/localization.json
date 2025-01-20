@@ -24,7 +24,16 @@
       "removeFromFavorite": "Huis verwijderen",
       "favoritesList": "Favorieten",
       "contactFormSubmit": "Verstuur bericht",
-      "contactFormConfirmationHeader": "Gelukt, je aanvraag is binnen"
+      "contactFormConfirmationHeader": "Gelukt, je aanvraag is binnen",
+      "askingPrice": "Vraagprijs",
+      "askingPricePerM2": "Vraagprijs per m²",
+      "houseStatus": "Status",
+      "houseType": "Soort woonhuis",
+      "yearOfConstruction": "Bouwjaar",
+      "numberOfRooms": "Aantal kamers",
+      "livingArea": "Wonen",
+      "rent": "Huur",
+      "buy": "Koop"
     },
     "EN": {
       "login": "Log in",
@@ -36,7 +45,16 @@
       "removeFromFavorite": "Remove house",
       "favoritesList": "Favourites",
       "contactFormSubmit": "Send message",
-      "contactFormConfirmationHeader": "Done! Your application has been received"
+      "contactFormConfirmationHeader": "Done! Your application has been received",
+      "askingPrice": "Asking price",
+      "askingPricePerM2": "Asking price per m²",
+      "houseStatus": "Status",
+      "houseType": "Type of house",
+      "yearOfConstruction": "Year of construction",
+      "numberOfRooms": "Number of rooms",
+      "livingArea": "Living area",
+      "rent": "For rent",
+      "buy": "For sale"
     }
   }
 }
