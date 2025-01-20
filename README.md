@@ -1,6 +1,6 @@
 # Funda Test Automation with Playwright & TypeScript
 
-This repository hosts automated tests for the Funda website, built with Playwright and TypeScript. It adheres to best practices such as the Page Object Model (POM) and Data-Driven Testing (DDT) design patterns, with features like localization support, cookie management, and reusable fixtures for efficient and scalable testing.
+This repository hosts a Whole Framework of automation test suite for Funda website, built with Playwright and TypeScript. It adheres to best practices such as the Page Object Model (POM) and Data-Driven Testing (DDT) design patterns, with features like localization support, cookie management, CI/CD Integration and reusable fixtures for efficient and scalable testing.
 
 ## Table of Contents
 
@@ -309,7 +309,6 @@ The CI/CD workflow file (`.github/workflows/smoke-tests-playwright.yml`) is alre
 
 - Tests run automatically on:
   - **Push events** to the `main` or `master` branch.
-  - **Pull Requests** to ensure new changes are validated before merging.
 
 ## Best Practices
 
