@@ -257,7 +257,7 @@ Funda-Playwright
 
 ## Test Coverage
 
-This test suite includes comprehensive test coverage for key functionalities of the Funda website. Below is an overview of the current test coverage, including **7 Smoke Tests**:
+This test suite includes comprehensive test coverage for key functionalities of the Funda website. Below is an overview of the current test coverage, **10 test scripts including 8 Smoke Tests**:
 
 #### Login Tests:
 
@@ -267,12 +267,13 @@ This test suite includes comprehensive test coverage for key functionalities of 
 #### Search Functionality Tests:
 
 - Search with valid location returns results:(Smoke Test Group).
-- Search in Rent with valid location and certain price range returns results:(Smoke Test Group).
+- Search in Rent with valid location and certain price range returns relevant results:(Smoke Test Group).
 - Search with invalid location shows no results message.
 
 #### House Details Page Tests:
 
-- House details page loads successfully:(Smoke Test Group).
+- House Info are shown correctly in House Details Page:(Smoke Test Group).
+- Agency Info are shown correctly in House Details Page:(Smoke Test Group).
 - Saving a house to favorites with a logged-in user:(Smoke Test Group).
 
 #### Real Estate Agency Interaction Tests:
@@ -309,6 +310,7 @@ The CI/CD workflow file (`.github/workflows/smoke-tests-playwright.yml`) is alre
 
 - Tests run automatically on:
   - **Push events** to the `main` or `master` branch.
+- **Known Issue:** There is an issue in Github secerts configurations that can't read the secert USER_AGENT, so the CI/CD workflow is currently failing. Need more time to investigate and debug the issue.  
 
 ## Best Practices
 
