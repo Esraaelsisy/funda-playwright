@@ -97,11 +97,11 @@ Funda-Playwright
 
 - **Dockerized Test Environment**:
 
-  - The test framework includes a preconfigured **Dockerfile** to build a containerized testing environment
+  - The test framework includes a preconfigured `Dockerfile` to build a containerized testing environment
   - Supports running tests in an isolated environment without requiring local dependencies, reducing compatibility issues and ensuring smooth execution.
 
 - **CI/CD Pipeline Integration**:
-  - Fully integrated with **GitHub Actions** for automated test execution on every code push or pull request.
+  - Fully integrated with **GitHub Actions** through `smoke-tests-playwright.yml` for automated test execution on every code push.
   - Automatically builds a Docker image, runs smoke tests, and generates test reports and artifacts.
 
 ## Prerequisites
