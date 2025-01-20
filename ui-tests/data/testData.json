@@ -15,17 +15,40 @@
     "askingPrice": "€ 399.500 k.k.",
     "postalCode": "7833 DH Nieuw-Amsterdam",
     "agencyName": "BERT BEUKEMA",
-    "agencyContact": "Bel 0591-555585"
+    "agencyContact": "Bel 0591-555585",
+    "details": {
+      "askingPrice": "€ 399.500 kosten koper",
+      "askingPricePerM2": "€ 2.895",
+      "houseStatus": "Verkocht onder voorbehoud",
+      "houseType": "Eengezinswoning",
+      "yearOfConstruction": "2005",
+      "numberOfRooms": "5 kamers (3 slaapkamers)",
+      "livingArea": "138 m²"
+    }
   },
   "realEstateAgency": {
-    "agencyName": "BERT BEUKEMA",
-    "agencyContact": "Bel 0591-555585",
+    "contactAgencyHouse1": "/detail/huur/den-helder/huis-jan-in-t-veltstraat-49/89195174/",
+    "contactAgencyHouse2": "detail/koop/nieuw-amsterdam/huis-daglicht-10/43853176/",
     "contactDetails": {
       "contactMessage": "Please ignore this request, it's for testing reasons.",
       "contactEmail": "harrypotter@example.com",
       "contactFirstName": "Harry",
       "contactLastName": "Potter",
       "contactTelephone": "0627561878"
+    }
+  },
+  "searchCriteria": {
+    "buy": {
+      "minPrice": "300000",
+      "maxPrice": "700000",
+      "minRooms": "3",
+      "maxRooms": "5"
+    },
+    "rent": {
+      "minPrice": "1000",
+      "maxPrice": "2500",
+      "minRooms": "2",
+      "maxRooms": "4"
     }
   }
 }
