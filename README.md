@@ -4,7 +4,6 @@ This repository hosts automated tests for the Funda website, built with Playwrig
 
 ## Table of Contents
 
-- [Project Overview](#project-overview)
 - [Project Structure](#project-structure)
 - [Key Features](#key-features)
 - [Prerequisites](#prerequisites)
@@ -45,23 +44,39 @@ Funda-Playwright
 
 ## Features
 
-- **Page Object Model (POM)**: Encapsulation of locators and actions in the `pages` folder and the test steps in the `specs` folder for modular, reusable, and maintainable code.
+- **Page Object Model (POM)**: 
+  - Organizes locators and actions in the `pages` folder.
+  - Separates test steps in the `specs` folder, ensuring modular, reusable, and maintainable code.
 
-- **User-Facing Locators**: The framework emphasizes intuitive locators like getByText and getByRole, enhancing test readability and reliability by targeting visible elements and accessibility attributes.
+- **User-Facing Locators**: 
+  - Leverages intuitive locators like `getByText` and `getByRole` for improved test readability and reliability.
+  - Focuses on visible elements and accessibility attributes, aligning with **real user interactions**.
 
-- **Localization Support**: Dynamically fetch localized text from `localization.json` using the `localizationHelper.ts`, enabling seamless support for multiple languages during testing. This also enhances the flexibility of user-facing locators, making them localized and dynamic to align with real user interactions.
+- **Localization Support**: 
+  - Dynamically retrieves localized text from `localization.json` using `localizationHelper.ts`.
+  - Enhances the flexibility of user-facing locators by making them localized and dynamic, supporting seamless multi-language testing.
 
-- **Data-Driven Testing**: Manage test inputs and expected outputs efficiently using `testData.json`, allowing the same test logic to run against different data sets.
+- **Data-Driven Testing**: 
+  - Centralizes test inputs and expected outputs in `testData.json`.
+  - Enables reusability of test logic across different data sets for efficiency and scalability.
 
-- **Reusable Fixtures**: Simplify test setup by sharing common configurations such as authentication, browser context, and page initialization through `baseTest.ts` and `authTest.ts`.
+- **Reusable Fixtures**: 
+  - Simplifies test setup by providing shared configurations, such as authentication, browser context, and page initialization.
+  - Includes `baseTest.ts` and `authTest.ts` for reusable setups.
 
-- **Headed and Headless Modes**: Easily switch between headed and headless modes. This flexibility supports different testing scenarios.
+- **Headed and Headless Modes**: 
+  - Supports switching between headed and headless modes based on testing scenarios for added flexibility.
 
-- **Grouping with Smoke Tests**: Identify and tag critical test cases (`@smokeTests`) to group them as smoke tests. These tests can be run selectively for quick validations of core functionalities.
+- **Test Grouping with Smoke Tests**: 
+  - Tags critical test cases with `@smokeTests` for selective execution.
+  - Allows quick validation of core functionalities by running smoke tests independently.
 
-- **Handling Cookies**: Automate cookie handling with utilities like `acceptCookies()` to ensure consistent setups and maintain session states during tests.
+- **Cookie Management**: 
+  - Automates cookie handling with utilities like `acceptCookies()` to maintain consistent setups and session states.
 
-- **Environment Variable Management**: Securely isolate sensitive data, such as usernames, passwords, and configurations, in a `.env` file. The `dotenv` library is used to load these variables during runtime, ensuring security and ease of configuration.
+- **Environment Variable Management**: 
+  - Safeguards sensitive data (e.g., usernames, passwords, configurations) in a `.env` file.
+  - Uses the `dotenv` library to securely load environment variables at runtime.
 
 ## Prerequisites
 
@@ -244,7 +259,10 @@ To improve the robustness and scalability of the test automation framework, the 
 
    - Increase localization coverage by adding support for additional languages.
 
-6. **CI/CD Pipeline Integration**:
+6. **Increased Usage of `data-test-id`**:
+   - Standardize the use of `data-test-id` attributes for UI elements to improve locator reliability and simplify test maintenance.
+
+7. **CI/CD Pipeline Integration**:
 
    - Set up a robust CI/CD pipeline to automate test execution, report generation, and deployment validation with every code change and/or production release.
 
