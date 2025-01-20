@@ -1,0 +1,42 @@
+{
+  "messages": {
+    "NL": {
+      "loginError": "Het e-mailadres en wachtwoord komen niet overeen met onze gegevens",
+      "resetPassword": "reset je wachtwoord",
+      "noResults": "Geen resultaten gevonden",
+      "favoriteSuccessMessage": "Je huis is bewaard"
+    },
+    "EN": {
+      "loginError": "The email address and password do not match our records",
+      "resetPassword": "reset your password",
+      "noResults": "No results found",
+      "favoriteSuccessMessage": "Your house is saved"
+    }
+  },
+  "buttons": {
+    "NL": {
+      "login": "Inloggen",
+      "logout": "Uitloggen",
+      "showTelephone": "Toon telefoonnummer",
+      "contact": "Neem contact op",
+      "requestViewing": "Vraag bezichtiging aan",
+      "saveToFavorite": "Bewaren",
+      "removeFromFavorite": "Huis verwijderen",
+      "favoritesList": "Favorieten",
+      "contactFormSubmit": "Verstuur bericht",
+      "contactFormConfirmationHeader": "je aanvraag is binnen"
+    },
+    "EN": {
+      "login": "Log in",
+      "logout": "Log out",
+      "showTelephone": "Show phone number",
+      "contact": "Contact agent",
+      "requestViewing": "Request a viewing",
+      "saveToFavorite": "Save",
+      "removeFromFavorite": "Remove house",
+      "favoritesList": "Favourites",
+      "contactFormSubmit": "Send message",
+      "contactFormConfirmationHeader": "Done! Your application has been received"
+    }
+  }
+}
