@@ -16,6 +16,7 @@ This repository hosts automated tests for the Funda website, built with Playwrig
 - [Test Reporting](#test-reporting)
   - [1. Running Smoke Tests](#1-running-smoke-tests)
   - [2. Running All Tests](#2-running-all-tests)
+  - [3. Running Smoke Tests With Docker](#3-running-smoke-tests-with-docker)
 - [Running Tests](#running-tests)
 - [Testing Framework Details](#testing-framework-details)
   - [Data](#data)
@@ -24,6 +25,7 @@ This repository hosts automated tests for the Funda website, built with Playwrig
   - [Fixtures](#fixtures)
   - [Utilities](#utilities)
 - [Test Coverage](#test-coverage)
+- [CI/CD Pipeline Integration](#cicd-pipeline-integration)
 - [Best Practices](#best-practices)
 - [Future Enhancements](#future-enhancements)
 - [Additional Notes](#additional-notes)
@@ -32,51 +34,75 @@ This repository hosts automated tests for the Funda website, built with Playwrig
 
 ```bash
 Funda-Playwright
-├── data                       # JSON data for localization and testing
-├── fixtures                   # Reusable configurations for tests
-├── pages                      # Encapsulation of page-specific locators and actions
-├── specs                      # Test scripts targeting specific functionalities
-├── utilities                  # Helper methods for localization and cookies
+├── .github/workflows          # CI/CD workflow files
+│   └── smoke-tests-playwright.yml # GitHub Actions workflow for smoke tests
+├── ui-tests                   # Main directory for test implementation
+│   ├── data                   # JSON data for localization and testing
+│   ├── fixtures               # Reusable configurations for tests
+│   ├── pages                  # Encapsulation of page-specific locators and actions
+│   ├── specs                  # Test scripts targeting specific functionalities
+│   └── utilities              # Helper methods for localization and cookies
 ├── .env                       # Environment variables (e.g., credentials, user agent)
+├── Dockerfile                 # Dockerfile to containerize the testing environment
+├── package-lock.json          # Auto-generated file for npm dependency lock
+├── package.json               # npm project configuration
 ├── playwright.config.ts       # Playwright configuration file
 └── README.md                  # Documentation for the project
 ```
 
 ## Features
 
-- **Page Object Model (POM)**: 
+- **Page Object Model (POM)**:
+
   - Organizes locators and actions in the `pages` folder.
   - Separates test steps in the `specs` folder, ensuring modular, reusable, and maintainable code.
 
-- **User-Facing Locators**: 
+- **User-Facing Locators**:
+
   - Leverages intuitive locators like `getByText` and `getByRole` for improved test readability and reliability.
   - Focuses on visible elements and accessibility attributes, aligning with **real user interactions**.
 
-- **Localization Support**: 
+- **Localization Support**:
+
   - Dynamically retrieves localized text from `localization.json` using `localizationHelper.ts`.
   - Enhances the flexibility of user-facing locators by making them localized and dynamic, supporting seamless multi-language testing.
 
-- **Data-Driven Testing**: 
+- **Data-Driven Testing**:
+
   - Centralizes test inputs and expected outputs in `testData.json`.
   - Enables reusability of test logic across different data sets for efficiency and scalability.
 
-- **Reusable Fixtures**: 
+- **Reusable Fixtures**:
+
   - Simplifies test setup by providing shared configurations, such as authentication, browser context, and page initialization.
   - Includes `baseTest.ts` and `authTest.ts` for reusable setups.
 
-- **Headed and Headless Modes**: 
+- **Headed and Headless Modes**:
+
   - Supports switching between headed and headless modes based on testing scenarios for added flexibility.
 
-- **Test Grouping with Smoke Tests**: 
+- **Test Grouping with Smoke Tests**:
+
   - Tags critical test cases with `@smokeTests` for selective execution.
   - Allows quick validation of core functionalities by running smoke tests independently.
 
-- **Cookie Management**: 
+- **Cookie Management**:
+
   - Automates cookie handling with utilities like `acceptCookies()` to maintain consistent setups and session states.
 
-- **Environment Variable Management**: 
+- **Environment Variable Management**:
+
   - Safeguards sensitive data (e.g., usernames, passwords, configurations) in a `.env` file.
   - Uses the `dotenv` library to securely load environment variables at runtime.
+
+- **Dockerized Test Environment**:
+
+  - The test framework includes a preconfigured **Dockerfile** to build a containerized testing environment
+  - Supports running tests in an isolated environment without requiring local dependencies, reducing compatibility issues and ensuring smooth execution.
+
+- **CI/CD Pipeline Integration**:
+  - Fully integrated with **GitHub Actions** for automated test execution on every code push or pull request.
+  - Automatically builds a Docker image, runs smoke tests, and generates test reports and artifacts.
 
 ## Prerequisites
 
@@ -165,6 +191,33 @@ Funda-Playwright
   npx playwright show-report
   ```
 
+### 3. Running Smoke Tests With Docker
+
+1. Build the Docker Image:
+
+   - Use the included Dockerfile to create a containerized testing environment:
+
+   ```bash
+   docker build -t funda-playwright .
+   ```
+
+2. Run Tests in Docker:
+
+   - Execute smoke tests in the container:
+
+   ```bash
+   docker run --rm \
+   -v $(pwd)/playwright-report:/app/playwright-report \
+   -e USER_AGENT=your_user_agent \
+   -e LANGUAGE=NL \
+   -e USERNAME=your_username \
+   -e PASSWORD=your_password \
+   funda-playwright
+   ```
+
+3. View Test Reports:
+   - After running the tests, the test reports will be available in the playwright-report/ directory.
+
 ## Testing Framework Details
 
 ### `data`
@@ -227,6 +280,37 @@ This test suite includes comprehensive test coverage for key functionalities of 
 - Contact an Agency for a certain house without logging in:(Smoke Test Group).
 - Request a Viewing for a certain house without logging in:(Smoke Test Group).
 
+### CI/CD Pipeline Integration
+
+#### **GitHub Actions Workflow**
+
+This project is integrated with **GitHub Actions** for automated testing. The CI/CD pipeline is set up to:
+
+1. **Build Docker Image**:
+
+   - Ensures consistent and isolated testing environments.
+
+2. **Run Smoke Tests**:
+
+   - Executes critical smoke tests to validate core functionalities.
+
+3. **Upload Test Reports and Traces**:
+   - Automatically generates and uploads artifacts (HTML reports and trace files) for debugging failed tests.
+
+#### **Example Workflow**
+
+The CI/CD workflow file (`.github/workflows/smoke-tests-playwright.yml`) is already configured and includes:
+
+- Building the Docker image.
+- Running smoke tests in the container.
+- Generating test artifacts for results and traces.
+
+#### **Trigger Events**
+
+- Tests run automatically on:
+  - **Push events** to the `main` or `master` branch.
+  - **Pull Requests** to ensure new changes are validated before merging.
+
 ## Best Practices
 
 - Use descriptive names for test scripts and functions to improve readability.
@@ -260,11 +344,12 @@ To improve the robustness and scalability of the test automation framework, the 
    - Increase localization coverage by adding support for additional languages.
 
 6. **Increased Usage of `data-test-id`**:
+
    - Standardize the use of `data-test-id` attributes for UI elements to improve locator reliability and simplify test maintenance.
 
 7. **CI/CD Pipeline Integration**:
 
-   - Set up a robust CI/CD pipeline to automate test execution, report generation, and deployment validation with every code change and/or production release.
+   - Fixing the repo secerts issue and set up a FULL CI/CD pipeline to automate test execution, report generation, and deployment validation with every code change and/or production release.
 
 ## Additional Notes
 
