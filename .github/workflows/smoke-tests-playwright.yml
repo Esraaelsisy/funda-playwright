@@ -2,9 +2,13 @@ name: Playwright Smoke Tests (Chromium)
 
 on:
   push:
-    branches: [ main, master ]
+    branches:
+      - main
+      - master
   pull_request:
-    branches: [ main, master ]
+    branches:
+      - main
+      - master
 
 jobs:
   test:
@@ -19,14 +23,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 22
+          node-version: 18 
 
       # Step 3: Build Docker Image
       - name: Build Docker Image
         run: docker build -t funda-playwright-chromium .
 
       # Step 4: Run Smoke Tests for Chromium
-      - name: Run Smoke Tests: Chromium
+      - name: Run Smoke Tests Chromium
         run: docker run --rm \
           -v ${{ github.workspace }}/playwright-report:/app/playwright-report \
           -e USER_AGENT=${{ secrets.USER_AGENT }} \
@@ -46,5 +50,5 @@ jobs:
       - name: Upload Trace Files
         uses: actions/upload-artifact@v3
         with:
-          name: trace-files
-          path: trace-files
+          name: playwright-traces
+          path: test-results/traces # Ensure this path matches the trace output directory in your Playwright config
