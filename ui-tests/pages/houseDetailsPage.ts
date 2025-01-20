@@ -13,9 +13,15 @@ export class HouseDetailsPage {
     houseAskingPrice: (askingPrice: string) =>
       this.page.getByText(askingPrice, { exact: true }).first(),
 
+    //Detailed House Description Locators
+    houseDetailedInfo: (detailInfo: string) =>
+      this.page
+        .locator(`//dt[text()='${detailInfo}']/following-sibling::dd`)
+        .first(),
+
     //House Agency Locators
     houseAgencyName: (agencyName: string) =>
-      this.page.locator("h3").getByTitle(agencyName),
+      this.page.locator("h3").getByRole("link", { name: agencyName }),
     contactAgencyButton: () => {
       const showTelephone = LocalizationHelper.getLocalizedText(
         "buttons",
@@ -107,6 +113,9 @@ export class HouseDetailsPage {
   }
   getAgencyTelephone(agencyTelephone: string) {
     return this.locators.houseAgencyTelephoneNumber(agencyTelephone);
+  }
+  getdetailedHouseInfo(detailInfo: string): Locator {
+    return this.locators.houseDetailedInfo(detailInfo);
   }
   get favoriteSuccessMessage(): Locator {
     return this.locators.favoriteSuccessMessage();
