@@ -11,7 +11,7 @@ test.describe("Real Estate Agency Interaction Tests", () => {
     //Arrangement
     await test.step("Navigate to the house details page", async () => {
       await pm.houseDetailsPage.navigateToHouseDetails(
-        testData.house.detailsUrl
+        testData.realEstateAgency.contactAgencyHouse1
       );
     });
     await test.step("Navigate to real estate agency Contact Us page", async () => {
@@ -63,7 +63,7 @@ test.describe("Real Estate Agency Interaction Tests", () => {
     //Arrangement
     await test.step("Navigate to the house details page", async () => {
       await pm.houseDetailsPage.navigateToHouseDetails(
-        testData.house.detailsUrl
+        testData.realEstateAgency.contactAgencyHouse2
       );
     });
     await test.step("Navigate to request a Viewing page", async () => {
