@@ -1,9 +1,10 @@
 import { test, expect } from "../fixtures/baseTest";
 import { PageManager } from "../pages/pageManager";
 import testData from "../data/testData.json";
+import { LocalizationHelper } from "../utilities/localizationHelper";
 
 test.describe("Search Functionality Tests", () => {
-  test("@smokeTests Search with valid location returns results", async ({
+  test("@smokeTests Search with valid location returns relevant results", async ({
     page,
   }) => {
     const pm = new PageManager(page);
@@ -14,18 +15,19 @@ test.describe("Search Functionality Tests", () => {
     });
     //Action
     await test.step("Perform a search with a valid location", async () => {
-      await pm.homePage.performSearch("Koop", testData.locations.validLocation);
+      await pm.homePage.performSearch(
+        LocalizationHelper.getLocalizedText("buttons", "buy"),
+        testData.locations.validLocation
+      );
     });
     //Asserations
-    await test.step("Verify that search results are displayed for that location", async () => {
+    await test.step("Verify that search results are displayed for that exact location", async () => {
       await expect(pm.searchPage.searchResultsLocation).toContainText(
         testData.locations.validLocation
       );
     });
     await test.step("Verify that search results count is not 0", async () => {
-      await expect(pm.searchPage.searchResultsCount).not.toHaveText(
-        "0 koopwoningen"
-      );
+      await expect(pm.searchPage.noResultsMessage).not.toBeVisible();
     });
   });
 
@@ -39,11 +41,17 @@ test.describe("Search Functionality Tests", () => {
     });
     //Action
     await test.step("Perform a search with a valid location", async () => {
-      await pm.homePage.performSearch("Huur", testData.locations.validLocation);
+      await pm.homePage.performSearch(
+        LocalizationHelper.getLocalizedText("buttons", "rent"),
+        testData.locations.validLocation
+      );
     });
     //Action
     await test.step("Filter a search with a defined price range", async () => {
-      await pm.searchPage.defineSearchPriceRange("1000", "2000");
+      await pm.searchPage.defineSearchPriceRange(
+        testData.searchCriteria.rent.minPrice,
+        testData.searchCriteria.rent.maxPrice
+      );
     });
     //Asserations
     await test.step("Verify that search results are displayed for that location", async () => {
@@ -51,8 +59,12 @@ test.describe("Search Functionality Tests", () => {
       const numericValue = priceText
         ? parseInt(priceText.replace(/[^\d]/g, ""))
         : 0;
-      expect(numericValue).toBeGreaterThanOrEqual(1000);
-      expect(numericValue).toBeLessThanOrEqual(2000);
+      expect(numericValue).toBeGreaterThanOrEqual(
+        Number(testData.searchCriteria.rent.minPrice)
+      );
+      expect(numericValue).toBeLessThanOrEqual(
+        Number(testData.searchCriteria.rent.maxPrice)
+      );
     });
 
     await test.step("Verify that search results are shown within the defined price", async () => {
@@ -62,13 +74,11 @@ test.describe("Search Functionality Tests", () => {
     });
 
     await test.step("Verify that search results count is not 0", async () => {
-      await expect(pm.searchPage.searchResultsCount).not.toHaveText(
-        "0 huurwoningen"
-      );
+      await expect(pm.searchPage.noResultsMessage).not.toBeVisible();
     });
   });
 
-  test("Search with invalid location shows no results message", async ({
+  test("@negativeTests Search with invalid location shows no results message", async ({
     page,
   }) => {
     const pm = new PageManager(page);
