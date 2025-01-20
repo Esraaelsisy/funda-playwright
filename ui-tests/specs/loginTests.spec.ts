@@ -24,7 +24,7 @@ test.describe("Login Tests", () => {
     });
   });
 
-  test("Login with invalid credentials", async ({ page }) => {
+  test("@negativeTests Login with invalid credentials", async ({ page }) => {
     const pm = new PageManager(page);
 
     await test.step("Navigate to login page", async () => {
